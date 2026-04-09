@@ -1,5 +1,7 @@
 <?php
 
+namespace Fr3on\Drift\Tests\Rules;
+
 use Fr3on\Drift\Rules\AppDebugRule;
 use Fr3on\Drift\EnvMap;
 use Fr3on\Drift\RuleResult;

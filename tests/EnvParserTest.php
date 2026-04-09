@@ -1,7 +1,9 @@
 <?php
 
-use Drift\EnvParser;
-use Drift\EnvMap;
+namespace Fr3on\Drift\Tests;
+
+use Fr3on\Drift\EnvParser;
+use Fr3on\Drift\EnvMap;
 
 test('it can parse a simple .env file', function () {
     $path = __DIR__ . '/.env.test';

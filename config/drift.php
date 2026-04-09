@@ -32,9 +32,9 @@ return [
     | Register your custom rules here.
     */
     'rules' => [
-        \Drift\Rules\AppDebugRule::class,
-        \Drift\Rules\AppKeyRule::class,
-        \Drift\Rules\CompletenessRule::class,
-        \Drift\Rules\QueueDriverRule::class,
+        \Fr3on\Drift\Rules\AppDebugRule::class,
+        \Fr3on\Drift\Rules\AppKeyRule::class,
+        \Fr3on\Drift\Rules\CompletenessRule::class,
+        \Fr3on\Drift\Rules\QueueDriverRule::class,
     ],
 ];

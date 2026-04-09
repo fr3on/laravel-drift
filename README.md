@@ -55,12 +55,12 @@ php artisan drift:check --strict
 
 ## Custom Rules
 
-You can create custom rules by implementing the `Drift\Contracts\DriftRule` interface:
+You can create custom rules by implementing the `Fr3on\Drift\Contracts\DriftRule` interface:
 
 ```php
-use Drift\Contracts\DriftRule;
-use Drift\EnvMap;
-use Drift\RuleResult;
+use Fr3on\Drift\Contracts\DriftRule;
+use Fr3on\Drift\EnvMap;
+use Fr3on\Drift\RuleResult;
 
 class MyCustomRule implements DriftRule
 {

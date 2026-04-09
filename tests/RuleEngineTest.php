@@ -1,9 +1,11 @@
 <?php
 
-use Drift\RuleEngine;
-use Drift\EnvMap;
-use Drift\RuleResult;
-use Drift\Contracts\DriftRule;
+namespace Fr3on\Drift\Tests;
+
+use Fr3on\Drift\RuleEngine;
+use Fr3on\Drift\EnvMap;
+use Fr3on\Drift\RuleResult;
+use Fr3on\Drift\Contracts\DriftRule;
 use Illuminate\Support\Collection;
 
 class MockPassRule implements DriftRule {

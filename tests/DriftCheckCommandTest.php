@@ -19,7 +19,7 @@ class DriftCheckCommandTest extends TestCase
     {
         // Set up dummy config for the test
         $app['config']->set('drift.rules', [
-            \Drift\Rules\AppDebugRule::class,
+            \Fr3on\Drift\Rules\AppDebugRule::class,
         ]);
         
         // Mock base paths to point to a temporary test directory
