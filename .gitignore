@@ -1,0 +1,9 @@
+/vendor/
+/composer.lock
+.env
+.idea/
+.DS_Store
+phpunit.result.cache
+.phpunit.cache/
+.pestphp-cache/
+tests/temp/

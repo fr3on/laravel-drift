@@ -1,0 +1,54 @@
+{
+    "name": "fr3on/laravel-drift",
+    "description": "Pre-deploy environment validation & config drift detection for Laravel applications.",
+    "keywords": [
+        "laravel",
+        "env",
+        "configuration",
+        "validation",
+        "drift"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmed Mardi",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "symfony/console": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.0|^3.0",
+        "orchestra/testbench": "^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drift\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drift\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Drift\\DriftServiceProvider"
+            ],
+            "aliases": {
+                "Drift": "Drift\\Facades\\Drift"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
