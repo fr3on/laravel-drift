@@ -1,5 +1,10 @@
 <?php
 
+use Fr3on\Drift\Rules\AppDebugRule;
+use Fr3on\Drift\Rules\AppKeyRule;
+use Fr3on\Drift\Rules\CompletenessRule;
+use Fr3on\Drift\Rules\QueueDriverRule;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -32,9 +37,9 @@ return [
     | Register your custom rules here.
     */
     'rules' => [
-        \Fr3on\Drift\Rules\AppDebugRule::class,
-        \Fr3on\Drift\Rules\AppKeyRule::class,
-        \Fr3on\Drift\Rules\CompletenessRule::class,
-        \Fr3on\Drift\Rules\QueueDriverRule::class,
+        AppDebugRule::class,
+        AppKeyRule::class,
+        CompletenessRule::class,
+        QueueDriverRule::class,
     ],
 ];

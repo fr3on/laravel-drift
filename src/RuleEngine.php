@@ -23,7 +23,8 @@ class RuleEngine
         return collect($this->rules)
             ->map(function (string $ruleClass) use ($env, $example) {
                 /** @var DriftRule $rule */
-                $rule = new $ruleClass();
+                $rule = new $ruleClass;
+
                 return $rule->check($env, $example);
             })
             ->filter();

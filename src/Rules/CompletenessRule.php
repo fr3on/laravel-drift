@@ -47,6 +47,7 @@ class CompletenessRule implements DriftRule
     {
         // Simple ignore list for common local/temp variables
         $ignored = ['DRIFT_STRICT', 'PORT'];
+
         return in_array($key, $ignored);
     }
 }

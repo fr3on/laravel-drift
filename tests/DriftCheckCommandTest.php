@@ -3,8 +3,9 @@
 namespace Fr3on\Drift\Tests;
 
 use Fr3on\Drift\DriftServiceProvider;
-use Illuminate\Support\Facades\Artisan;
+use Fr3on\Drift\Rules\AppDebugRule;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DriftCheckCommandTest extends TestCase
 {
@@ -19,24 +20,24 @@ class DriftCheckCommandTest extends TestCase
     {
         // Set up dummy config for the test
         $app['config']->set('drift.rules', [
-            \Fr3on\Drift\Rules\AppDebugRule::class,
+            AppDebugRule::class,
         ]);
-        
+
         // Mock base paths to point to a temporary test directory
-        $app->useStoragePath(__DIR__ . '/temp');
+        $app->useStoragePath(__DIR__.'/temp');
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function it_can_run_the_drift_check_command()
     {
-        // Note: In a real test we'd create dummy .env files, 
+        // Note: In a real test we'd create dummy .env files,
         // but here we just verify the command is registered and runs.
         $this->artisan('drift:check')
             ->assertExitCode(0)
             ->expectsOutputToContain('Laravel Drift');
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function it_fails_in_strict_mode_if_warnings_exist()
     {
         // Mocking a scenario where a rule returns a warning

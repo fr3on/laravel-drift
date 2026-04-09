@@ -58,20 +58,21 @@ class DriftCheckCommand extends Command
         }
 
         $this->components->info('Environment check passed!');
+
         return 0;
     }
 
     /**
-     * @param Collection<int, RuleResult> $results
+     * @param  Collection<int, RuleResult>  $results
      */
     private function renderResults(Collection $results): void
     {
         foreach ($results as $result) {
             $status = $this->getStatusLabel($result);
             $key = $result->key ? "<fg=gray>{$result->key}</> " : '';
-            
+
             $this->line("  {$status}  {$key}{$result->message}");
-            
+
             if ($result->remediation && $this->output->isVerbose()) {
                 $this->line("      <fg=gray>└─ {$result->remediation}</>");
             }

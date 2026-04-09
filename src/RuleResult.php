@@ -5,8 +5,11 @@ namespace Fr3on\Drift;
 class RuleResult
 {
     public const STATUS_PASS = 'pass';
+
     public const STATUS_WARN = 'warn';
+
     public const STATUS_FAIL = 'fail';
+
     public const STATUS_SKIP = 'skip';
 
     public function __construct(

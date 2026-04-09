@@ -2,20 +2,24 @@
 
 namespace Fr3on\Drift\Tests;
 
-use Fr3on\Drift\RuleEngine;
-use Fr3on\Drift\EnvMap;
-use Fr3on\Drift\RuleResult;
 use Fr3on\Drift\Contracts\DriftRule;
+use Fr3on\Drift\EnvMap;
+use Fr3on\Drift\RuleEngine;
+use Fr3on\Drift\RuleResult;
 use Illuminate\Support\Collection;
 
-class MockPassRule implements DriftRule {
-    public function check(EnvMap $env, EnvMap $example): RuleResult {
+class MockPassRule implements DriftRule
+{
+    public function check(EnvMap $env, EnvMap $example): RuleResult
+    {
         return RuleResult::pass('OK');
     }
 }
 
-class MockFailRule implements DriftRule {
-    public function check(EnvMap $env, EnvMap $example): RuleResult {
+class MockFailRule implements DriftRule
+{
+    public function check(EnvMap $env, EnvMap $example): RuleResult
+    {
         return RuleResult::fail('Bad');
     }
 }
