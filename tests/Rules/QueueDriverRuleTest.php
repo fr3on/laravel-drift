@@ -1,7 +1,7 @@
 <?php
 
-use Drift\Rules\QueueDriverRule;
-use Drift\EnvMap;
+use Fr3on\Drift\Rules\QueueDriverRule;
+use Fr3on\Drift\EnvMap;
 
 test('it warns when queue driver is sync in production', function () {
     $rule = new QueueDriverRule();

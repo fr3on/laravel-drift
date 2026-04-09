@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^10.0|^11.0|^12.0",
-        "symfony/console": "^6.0|^7.0"
+        "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
+        "symfony/console": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
         "pestphp/pest": "^2.0|^3.0",
@@ -26,21 +26,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Drift\\": "src/"
+            "Fr3on\\Drift\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Drift\\Tests\\": "tests/"
+            "Fr3on\\Drift\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Drift\\DriftServiceProvider"
+                "Fr3on\\Drift\\DriftServiceProvider"
             ],
             "aliases": {
-                "Drift": "Drift\\Facades\\Drift"
+                "Drift": "Fr3on\\Drift\\Facades\\Drift"
             }
         }
     },

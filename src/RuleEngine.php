@@ -1,8 +1,8 @@
 <?php
 
-namespace Drift;
+namespace Fr3on\Drift;
 
-use Drift\Contracts\DriftRule;
+use Fr3on\Drift\Contracts\DriftRule;
 use Illuminate\Support\Collection;
 
 class RuleEngine

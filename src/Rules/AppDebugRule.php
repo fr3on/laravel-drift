@@ -1,10 +1,10 @@
 <?php
 
-namespace Drift\Rules;
+namespace Fr3on\Drift\Rules;
 
-use Drift\Contracts\DriftRule;
-use Drift\EnvMap;
-use Drift\RuleResult;
+use Fr3on\Drift\Contracts\DriftRule;
+use Fr3on\Drift\EnvMap;
+use Fr3on\Drift\RuleResult;
 
 class AppDebugRule implements DriftRule
 {

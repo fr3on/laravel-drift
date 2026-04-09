@@ -1,8 +1,8 @@
 <?php
 
-namespace Drift;
+namespace Fr3on\Drift;
 
-use Drift\Commands\DriftCheckCommand;
+use Fr3on\Drift\Commands\DriftCheckCommand;
 use Illuminate\Support\ServiceProvider;
 
 class DriftServiceProvider extends ServiceProvider

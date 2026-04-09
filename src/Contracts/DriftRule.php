@@ -1,9 +1,9 @@
 <?php
 
-namespace Drift\Contracts;
+namespace Fr3on\Drift\Contracts;
 
-use Drift\EnvMap;
-use Drift\RuleResult;
+use Fr3on\Drift\EnvMap;
+use Fr3on\Drift\RuleResult;
 
 interface DriftRule
 {

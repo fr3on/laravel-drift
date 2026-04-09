@@ -1,7 +1,7 @@
 <?php
 
-use Drift\Rules\CompletenessRule;
-use Drift\EnvMap;
+use Fr3on\Drift\Rules\CompletenessRule;
+use Fr3on\Drift\EnvMap;
 
 test('it fails when keys from .env.example are missing in .env', function () {
     $rule = new CompletenessRule();

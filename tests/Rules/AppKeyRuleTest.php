@@ -1,7 +1,7 @@
 <?php
 
-use Drift\Rules\AppKeyRule;
-use Drift\EnvMap;
+use Fr3on\Drift\Rules\AppKeyRule;
+use Fr3on\Drift\EnvMap;
 
 test('it fails when APP_KEY is missing', function () {
     $rule = new AppKeyRule();

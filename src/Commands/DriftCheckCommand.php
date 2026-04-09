@@ -1,10 +1,10 @@
 <?php
 
-namespace Drift\Commands;
+namespace Fr3on\Drift\Commands;
 
-use Drift\EnvParser;
-use Drift\RuleEngine;
-use Drift\RuleResult;
+use Fr3on\Drift\EnvParser;
+use Fr3on\Drift\RuleEngine;
+use Fr3on\Drift\RuleResult;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 

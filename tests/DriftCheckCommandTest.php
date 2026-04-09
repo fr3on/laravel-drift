@@ -1,8 +1,8 @@
 <?php
 
-namespace Drift\Tests;
+namespace Fr3on\Drift\Tests;
 
-use Drift\DriftServiceProvider;
+use Fr3on\Drift\DriftServiceProvider;
 use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
 

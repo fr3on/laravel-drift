@@ -1,6 +1,6 @@
 <?php
 
-namespace Drift;
+namespace Fr3on\Drift;
 
 class EnvParser
 {
