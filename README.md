@@ -1,6 +1,8 @@
 # Laravel Drift
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/fr3on/laravel-drift.svg?style=flat-square)](https://packagist.org/packages/fr3on/laravel-drift)
+[![PHP Version](https://img.shields.io/badge/php-^8.2-777bb4.svg?style=flat-square&logo=php)](https://packagist.org/packages/fr3on/laravel-drift)
+[![Laravel Version](https://img.shields.io/badge/laravel-^10.0%20%7C%20^11.0%20%7C%20^12.0-ff2d20.svg?style=flat-square&logo=laravel)](https://packagist.org/packages/fr3on/laravel-drift)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/fr3on/laravel-drift/ci.yml?branch=main&label=tests&style=flat-square)](https://github.com/fr3on/laravel-drift/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/fr3on/laravel-drift.svg?style=flat-square)](https://packagist.org/packages/fr3on/laravel-drift)
 
