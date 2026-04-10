@@ -33,7 +33,7 @@ class PlaceholderValueRule implements DriftRule
             return RuleResult::fail(
                 'Placeholder values detected in .env file.',
                 'PlaceholderValues',
-                'The following keys have placeholder values: ' . implode(', ', $flaggedKeys) . '. Please set real values before deploying.',
+                'The following keys have placeholder values: '.implode(', ', $flaggedKeys).'. Please set real values before deploying.',
                 ['flagged_keys' => $flaggedKeys]
             );
         }

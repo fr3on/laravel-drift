@@ -1,7 +1,6 @@
 <?php
 
-use Fr3on\Drift\EnvParser;
-use Fr3on\Drift\EnvWriter;
+use Fr3on\Drift\Rules\CompletenessRule;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 
@@ -15,15 +14,15 @@ it('repairs missing keys in .env when --fix is used', function () {
     config(['drift.env_file' => $tempEnv]);
     config(['drift.example_file' => $tempExample]);
     // Ensure completeness rule is active in config
-    config(['drift.rules' => [\Fr3on\Drift\Rules\CompletenessRule::class]]);
+    config(['drift.rules' => [CompletenessRule::class]]);
 
     Artisan::call('drift:check', ['--fix' => true]);
 
     $content = File::get($tempEnv);
     expect($content)->toContain('STRIPE_KEY=');
-    expect(File::exists($tempEnv . '.bak'))->toBeTrue();
+    expect(File::exists($tempEnv.'.bak'))->toBeTrue();
 
     unlink($tempEnv);
-    unlink($tempEnv . '.bak');
+    unlink($tempEnv.'.bak');
     unlink($tempExample);
 });

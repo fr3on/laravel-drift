@@ -2,11 +2,13 @@
 
 namespace Fr3on\Drift\Commands;
 
+use Fr3on\Drift\Contracts\DriftReporter;
 use Fr3on\Drift\EnvParser;
+use Fr3on\Drift\EnvWriter;
+use Fr3on\Drift\Reporters\JsonReporter;
+use Fr3on\Drift\Reporters\TerminalReporter;
 use Fr3on\Drift\RuleEngine;
-use Fr3on\Drift\RuleResult;
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 
 class DriftCheckCommand extends Command
 {
@@ -60,15 +62,15 @@ class DriftCheckCommand extends Command
                 }
             }
 
-            if (!empty($missingKeys)) {
-                $writer = new \Fr3on\Drift\EnvWriter();
+            if (! empty($missingKeys)) {
+                $writer = new EnvWriter;
                 $writer->backup($envPath);
                 $writer->appendMissing($envPath, $missingKeys);
 
                 if ($format === 'terminal') {
                     $this->components->warn(sprintf('Repaired %d missing key(s). Backup created at .env.bak', count($missingKeys)));
                 }
-                
+
                 // Refresh data for final report
                 $results = $engine->execute($parser->parse($envPath), $example);
             }
@@ -99,11 +101,11 @@ class DriftCheckCommand extends Command
         return 0;
     }
 
-    protected function getReporter(string $format): \Fr3on\Drift\Contracts\DriftReporter
+    protected function getReporter(string $format): DriftReporter
     {
         return match ($format) {
-            'json' => new \Fr3on\Drift\Reporters\JsonReporter($this->output),
-            default => new \Fr3on\Drift\Reporters\TerminalReporter($this->output, $this->components),
+            'json' => new JsonReporter($this->output),
+            default => new TerminalReporter($this->output, $this->components),
         };
     }
 }

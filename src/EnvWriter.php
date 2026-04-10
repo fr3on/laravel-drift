@@ -13,7 +13,7 @@ class EnvWriter
             return false;
         }
 
-        return copy($path, $path . '.bak');
+        return copy($path, $path.'.bak');
     }
 
     /**
@@ -25,14 +25,14 @@ class EnvWriter
             return 0;
         }
 
-        $content = "\n# --- Added by Laravel Drift on " . date('Y-m-d H:i:s') . " ---\n";
-        
+        $content = "\n# --- Added by Laravel Drift on ".date('Y-m-d H:i:s')." ---\n";
+
         foreach ($missingKeys as $key => $value) {
             // If value contains spaces, wrap in quotes
             if (str_contains($value, ' ')) {
-                $value = '"' . $value . '"';
+                $value = '"'.$value.'"';
             }
-            
+
             $content .= "{$key}={$value}\n";
         }
 

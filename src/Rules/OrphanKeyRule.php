@@ -24,7 +24,7 @@ class OrphanKeyRule implements DriftRule
             return RuleResult::warn(
                 'Orphan keys detected in .env file.',
                 'OrphanKeys',
-                'The following keys exist in .env but are missing from .env.example: ' . implode(', ', $orphanKeys),
+                'The following keys exist in .env but are missing from .env.example: '.implode(', ', $orphanKeys),
                 ['orphan_keys' => $orphanKeys]
             );
         }
