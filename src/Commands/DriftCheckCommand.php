@@ -15,7 +15,10 @@ class DriftCheckCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'drift:check {--strict : Treat warnings as failures}';
+    protected $signature = 'drift:check 
+                            {--strict : Treat warnings as failures}
+                            {--fix : Attempt to automatically repair missing keys}
+                            {--format=terminal : The output format (terminal, json)}';
 
     /**
      * The console command description.
@@ -29,8 +32,13 @@ class DriftCheckCommand extends Command
      */
     public function handle(EnvParser $parser): int
     {
-        $this->newLine();
-        $this->components->info('Laravel Drift v1.0 | Checking environment against .env.example');
+        $format = $this->option('format');
+        $isFix = $this->option('fix');
+
+        if ($format === 'terminal') {
+            $this->newLine();
+            $this->components->info('Laravel Drift v1.0 | Checking environment against .env.example');
+        }
 
         $envPath = config('drift.env_file', base_path('.env'));
         $examplePath = config('drift.example_file', base_path('.env.example'));
@@ -41,54 +49,61 @@ class DriftCheckCommand extends Command
         $engine = new RuleEngine(config('drift.rules', []));
         $results = $engine->execute($env, $example);
 
-        $this->renderResults($results);
+        // 1. Handle Automatic Repair
+        if ($isFix && file_exists($envPath)) {
+            $missingKeys = [];
+            foreach ($results as $result) {
+                if ($result->rule === 'completeness' && isset($result->metadata['missing'])) {
+                    foreach ($result->metadata['missing'] as $key) {
+                        $missingKeys[$key] = $example->get($key, '');
+                    }
+                }
+            }
+
+            if (!empty($missingKeys)) {
+                $writer = new \Fr3on\Drift\EnvWriter();
+                $writer->backup($envPath);
+                $writer->appendMissing($envPath, $missingKeys);
+
+                if ($format === 'terminal') {
+                    $this->components->warn(sprintf('Repaired %d missing key(s). Backup created at .env.bak', count($missingKeys)));
+                }
+                
+                // Refresh data for final report
+                $results = $engine->execute($parser->parse($envPath), $example);
+            }
+        }
+
+        $this->getReporter($format)->report($results);
 
         $failures = $results->filter->isFail();
         $warnings = $results->filter->isWarn();
         $isStrict = $this->option('strict') || config('drift.strict', false);
 
         if ($failures->count() > 0 || ($isStrict && $warnings->count() > 0)) {
-            $this->components->error(sprintf(
-                'FAIL: %d error(s), %d warning(s) found.',
-                $failures->count(),
-                $warnings->count()
-            ));
+            if ($format === 'terminal') {
+                $this->components->error(sprintf(
+                    'FAIL: %d error(s), %d warning(s) found.',
+                    $failures->count(),
+                    $warnings->count()
+                ));
+            }
 
             return 1;
         }
 
-        $this->components->info('Environment check passed!');
+        if ($format === 'terminal') {
+            $this->components->info('Environment check passed!');
+        }
 
         return 0;
     }
 
-    /**
-     * @param  Collection<int, RuleResult>  $results
-     */
-    private function renderResults(Collection $results): void
+    protected function getReporter(string $format): \Fr3on\Drift\Contracts\DriftReporter
     {
-        foreach ($results as $result) {
-            $status = $this->getStatusLabel($result);
-            $key = $result->key ? "<fg=gray>{$result->key}</> " : '';
-
-            $this->line("  {$status}  {$key}{$result->message}");
-
-            if ($result->remediation && $this->output->isVerbose()) {
-                $this->line("      <fg=gray>└─ {$result->remediation}</>");
-            }
-        }
-
-        $this->newLine();
-    }
-
-    private function getStatusLabel(RuleResult $result): string
-    {
-        return match ($result->status) {
-            RuleResult::STATUS_PASS => '<fg=green>✓</>',
-            RuleResult::STATUS_WARN => '<fg=yellow>~</>',
-            RuleResult::STATUS_FAIL => '<fg=red>✗</>',
-            RuleResult::STATUS_SKIP => '<fg=gray>○</>',
-            default => '?',
+        return match ($format) {
+            'json' => new \Fr3on\Drift\Reporters\JsonReporter($this->output),
+            default => new \Fr3on\Drift\Reporters\TerminalReporter($this->output, $this->components),
         };
     }
 }
