@@ -21,7 +21,9 @@ class CompletenessRule implements DriftRule
             return RuleResult::fail(
                 sprintf('Environment is missing %d keys defined in .env.example.', count($missing)),
                 implode(', ', $missing),
-                'Add the missing keys to your .env file.'
+                'Add the missing keys to your .env file.',
+                ['missing' => $missing],
+                'completeness'
             );
         }
 

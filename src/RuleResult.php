@@ -16,27 +16,29 @@ class RuleResult
         public string $status,
         public string $message,
         public ?string $key = null,
-        public ?string $remediation = null
+        public ?string $remediation = null,
+        public ?string $rule = null,
+        public array $metadata = []
     ) {}
 
-    public static function pass(string $message = 'Condition met', ?string $key = null): self
+    public static function pass(string $message = 'Condition met', ?string $key = null, array $metadata = [], ?string $rule = null): self
     {
-        return new self(self::STATUS_PASS, $message, $key);
+        return new self(self::STATUS_PASS, $message, $key, null, $rule, $metadata);
     }
 
-    public static function warn(string $message, ?string $key = null, ?string $remediation = null): self
+    public static function warn(string $message, ?string $key = null, ?string $remediation = null, array $metadata = [], ?string $rule = null): self
     {
-        return new self(self::STATUS_WARN, $message, $key, $remediation);
+        return new self(self::STATUS_WARN, $message, $key, $remediation, $rule, $metadata);
     }
 
-    public static function fail(string $message, ?string $key = null, ?string $remediation = null): self
+    public static function fail(string $message, ?string $key = null, ?string $remediation = null, array $metadata = [], ?string $rule = null): self
     {
-        return new self(self::STATUS_FAIL, $message, $key, $remediation);
+        return new self(self::STATUS_FAIL, $message, $key, $remediation, $rule, $metadata);
     }
 
-    public static function skip(string $message, ?string $key = null): self
+    public static function skip(string $message, ?string $key = null, array $metadata = [], ?string $rule = null): self
     {
-        return new self(self::STATUS_SKIP, $message, $key);
+        return new self(self::STATUS_SKIP, $message, $key, null, $rule, $metadata);
     }
 
     public function isPass(): bool

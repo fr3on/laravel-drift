@@ -25,7 +25,14 @@ class RuleEngine
                 /** @var DriftRule $rule */
                 $rule = new $ruleClass;
 
-                return $rule->check($env, $example);
+                $result = $rule->check($env, $example);
+
+                if ($result && is_null($result->rule)) {
+                    $name = str_replace('Rule', '', class_basename($ruleClass));
+                    $result->rule = strtolower($name);
+                }
+
+                return $result;
             })
             ->filter();
     }
